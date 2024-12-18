@@ -13,6 +13,7 @@ Changes from 0.11.8 to 0.12.0
   - conjunction information within ``"MM_CON_SPH_2_:crossover"`` and ``"MM_CON_SPH_2_:plane_alignment"``
 
 - Added CHAMP magnetic dataset, ``CH_ME_MAG_LR_3``
+- Added :py:meth:`viresclient.SwarmRequest.get_collection_info`
 
 Changes from 0.11.7 to 0.11.8
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

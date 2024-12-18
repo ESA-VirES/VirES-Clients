@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<wps:Execute xmlns:wps="http://www.opengis.net/wps/1.0.0" xmlns:ows="http://www.opengis.net/ows/1.1" version="1.0.0" service="WPS">
+  <ows:Identifier>vires:get_collection_info</ows:Identifier>
+  <wps:DataInputs>
+    <wps:Input>
+      <ows:Identifier>collection</ows:Identifier>
+      <wps:Data>
+        <wps:LiteralData>{{ collections }}</wps:LiteralData>
+      </wps:Data>
+    </wps:Input>
+  </wps:DataInputs>
+  <wps:ResponseForm>
+    <wps:RawDataOutput mimeType="{{ response_type }}">
+      <ows:Identifier>output</ows:Identifier>
+    </wps:RawDataOutput>
+  </wps:ResponseForm>
+</wps:Execute>

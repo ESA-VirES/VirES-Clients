@@ -21,6 +21,7 @@ VirES provides more than just *access* to data. Some operations can be peformed 
       | :py:meth:`viresclient.SwarmRequest.available_times`
       | :py:meth:`viresclient.SwarmRequest.get_orbit_number`
       | :py:meth:`viresclient.SwarmRequest.get_times_for_orbits`
+      | :py:meth:`viresclient.SwarmRequest.get_collection_info`
     **Geomagnetic model evaluation**
       | Forwards evaluation of magnetic field models when a magnetic dataset is selected (e.g. ``MAGx_LR``). For more detail, see :ref:`Geomagnetic model handling`.
       | :py:meth:`viresclient.SwarmRequest.available_models`

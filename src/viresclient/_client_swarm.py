@@ -26,6 +26,7 @@ TEMPLATE_FILES = {
     "times_from_orbits": "vires_times_from_orbits.xml",
     "get_observatories": "vires_get_observatories.xml",
     "get_conjunctions": "vires_get_conjunctions.xml",
+    "get_collection_info": "vires_get_collection_info.xml",
 }
 
 REFERENCES = {
@@ -2044,6 +2045,43 @@ class SwarmRequest(ClientRequest):
         """Print currently applied filters."""
         for filter_ in self._filterlist:
             print(filter_)
+
+    def get_collection_info(self, collections):
+        """Get information about a list of collections
+
+        Args:
+            collections (list[str]): List of collections to get information for
+
+        Returns:
+            list[dict]: A list of dictionaries containing information about each collection
+
+        Examples:
+
+            .. code-block:: python
+
+                from viresclient import SwarmRequest
+                request = SwarmRequest("https://vires.services/ows")
+                info = request.get_collection_info(["SW_OPER_MAGA_LR_1B"])
+
+            gives::
+
+                [{'name': 'SW_OPER_MAGA_LR_1B',
+                'productType': 'SW_MAGx_LR_1B',
+                'productCount': 3579,
+                'timeExtent': {'start': '2013-11-25T11:02:52Z',
+                'end': '2023-09-28T23:59:59Z'}}]
+        """
+        if not isinstance(collections, list):
+            raise TypeError("collections must be a list")
+        templatefile = TEMPLATE_FILES["get_collection_info"]
+        template = JINJA2_ENVIRONMENT.get_template(templatefile)
+        request = template.render(
+            collections=",".join(collections),
+            response_type="application/json",
+        ).encode("UTF-8")
+        response = self._get(request, asynchronous=False, show_progress=False)
+        response = json.loads(response.decode("UTF-8"))
+        return response
 
     def get_times_for_orbits(
         self, start_orbit, end_orbit, mission="Swarm", spacecraft=None
